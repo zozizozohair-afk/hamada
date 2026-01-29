@@ -20,34 +20,55 @@ body {
 @media print {
   @page {
     size: landscape;
-    margin: 5mm;
+    margin: 2mm; /* Minimal margins */
   }
   
+  html {
+    /* Force scale down the entire page to fit wide tables */
+    font-size: 10px;
+  }
+
   body {
     background: white;
-    font-size: 10px; /* Reduced font size for print */
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    /* Use zoom to scale everything down significantly */
+    zoom: 0.65; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   /* Force full width and remove scrolling */
   table {
     width: 100% !important;
     min-width: 0 !important;
-    font-size: 9px !important;
+    font-size: 9px !important; /* Ensure text is legible but small */
+    border-collapse: collapse;
   }
 
   /* Adjust table cell padding for print */
   th, td {
-    padding: 4px !important;
+    padding: 2px 4px !important; /* Tighter padding */
     white-space: nowrap;
+    border: 1px solid #e2e8f0; /* Add borders for clarity */
+  }
+
+  /* Specific column adjustments */
+  th.w-24, td.w-24 {
+    width: auto !important;
   }
 
   /* Ensure headers have background colors in print */
   thead tr th {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    color: black !important; /* Ensure text contrast */
+    text-shadow: none !important;
   }
+  
+  /* Make header backgrounds lighter for saving ink/better contrast if needed, 
+     but user seems to want colors. Keeping exact colors but ensuring they print. */
 
   /* Hide scrollbars and ensure containers don't clip */
   .overflow-x-auto {
@@ -55,21 +76,23 @@ body {
     max-height: none !important;
   }
   
-  /* Remove shadows and borders that look bad in print */
-  .shadow-xl, .shadow-md, .shadow-sm {
+  /* Remove shadows */
+  .shadow-xl, .shadow-md, .shadow-sm, .shadow-inner {
     box-shadow: none !important;
   }
   
-  .border {
-    border-color: #e2e8f0 !important; /* light gray */
+  /* Hide non-printable elements */
+  .print\:hidden {
+    display: none !important;
   }
 
   /* Ensure the main container takes full width */
   .min-h-screen {
     padding: 0 !important;
+    min-height: 0 !important;
   }
   
-  /* Hide URL and Page numbers if possible (browser dependent) */
+  /* Hide URL and Page numbers */
   @page {
     margin-bottom: 0;
   }

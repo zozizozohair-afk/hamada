@@ -348,10 +348,10 @@ export default function AnnualDepreciationReport() {
       </div>
 
       {/* Table Container */}
-      <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden print:shadow-none print:border-none print:rounded-none">
-        <div className="overflow-x-auto max-h-[70vh]">
-          <table className="w-full text-sm text-right min-w-[1400px] border-collapse">
-            <thead className="sticky top-0 z-20 shadow-md">
+      <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden print:shadow-none print:border-none print:rounded-none print:overflow-visible">
+        <div className="overflow-x-auto max-h-[70vh] print:max-h-none print:overflow-visible">
+          <table className="w-full text-sm text-right min-w-[1400px] print:min-w-0 border-collapse">
+            <thead className="sticky top-0 z-20 shadow-md print:static print:shadow-none">
               {/* Top Header Level */}
               <tr className="bg-slate-900 text-white text-center">
                 <th rowSpan={2} className="p-4 font-semibold w-24 print:hidden">الإجراءات</th>
