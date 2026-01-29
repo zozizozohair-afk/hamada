@@ -15,3 +15,62 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+/* Print Styles */
+@media print {
+  @page {
+    size: landscape;
+    margin: 5mm;
+  }
+  
+  body {
+    background: white;
+    font-size: 10px; /* Reduced font size for print */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Force full width and remove scrolling */
+  table {
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 9px !important;
+  }
+
+  /* Adjust table cell padding for print */
+  th, td {
+    padding: 4px !important;
+    white-space: nowrap;
+  }
+
+  /* Ensure headers have background colors in print */
+  thead tr th {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide scrollbars and ensure containers don't clip */
+  .overflow-x-auto {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+  
+  /* Remove shadows and borders that look bad in print */
+  .shadow-xl, .shadow-md, .shadow-sm {
+    box-shadow: none !important;
+  }
+  
+  .border {
+    border-color: #e2e8f0 !important; /* light gray */
+  }
+
+  /* Ensure the main container takes full width */
+  .min-h-screen {
+    padding: 0 !important;
+  }
+  
+  /* Hide URL and Page numbers if possible (browser dependent) */
+  @page {
+    margin-bottom: 0;
+  }
+}
